@@ -1,0 +1,28 @@
+services:
+  # Serviço da sua API Rails
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    environment:
+      RAILS_ENV: development
+    env_file:
+      - .env
+
+  # Serviço do banco de dados PostgreSQL
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=api_rails_development
+
+volumes:
+  postgres_data:

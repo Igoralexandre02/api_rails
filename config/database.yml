@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # Nome do host do contêiner do banco de dados, conforme definido em docker-compose.yml
+  host: <%= ENV["DATABASE_HOST"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: api_rails_development
+
+test:
+  <<: *default
+  database: api_rails_test
+
+production:
+  <<: *default
+  database: api_rails_production
