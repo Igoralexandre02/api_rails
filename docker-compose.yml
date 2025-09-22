@@ -16,12 +16,16 @@ services:
   # Serviço do banco de dados PostgreSQL
   db:
     image: postgres:latest
+    ports:
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DATABASE_USERNAME}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_DB=${DATABASE_NAME} 
+    env_file:
+      - .env
 
 volumes:
   postgres_data:
