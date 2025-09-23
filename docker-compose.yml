@@ -12,6 +12,8 @@ services:
     environment:
       - RAILS_ENV=${RAILS_ENV}
       - DATABASE_URL=postgres://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME}
+    env_file:
+      - .env
 
   # Serviço do banco de dados PostgreSQL
   db:
