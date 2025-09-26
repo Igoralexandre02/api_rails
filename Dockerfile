@@ -32,6 +32,9 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Garante que o diretório de gems existe e tem permissão
+RUN mkdir -p /usr/local/bundle && chown -R 1000:1000 /usr/local/bundle
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \

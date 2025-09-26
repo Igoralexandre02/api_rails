@@ -9,7 +9,9 @@ services:
       - db
     volumes:
       - .:/rails
+      - bundle_cache:/usr/local/bundle
     environment:
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - RAILS_ENV=${RAILS_ENV}
       - DATABASE_URL=postgres://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME}
     env_file:
@@ -31,3 +33,4 @@ services:
 
 volumes:
   postgres_data:
+  bundle_cache:

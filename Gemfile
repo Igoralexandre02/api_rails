@@ -37,7 +37,8 @@ gem "thruster", require: false
 gem "rack-cors"
 
 gem "devise"
-gem "devise-jwt"
+  gem "devise-jwt"
+  gem "jsonapi-serializer"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
